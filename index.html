@@ -1,1 +1,547 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pi Photonics - AI-Powered Photonic Chip Design</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --dark: #0a0a0a;
+            --light: #F9FAFB;
+            --gray: #9CA3AF;
+            --dark-bg: #000000;
+            --card-bg: #111827;
+            --text: #E5E7EB;
+            --text-muted: #9CA3AF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--dark-bg);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        /* Header */
+        header {
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 0;  /* Slightly reduced padding */
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        
+        .logo img {
+            height: 60px;  /* Increased from 40px */
+            width: auto;
+            transition: all 0.2s ease;
+        }
+        
+        .logo:hover img {
+            opacity: 0.95;
+            transform: scale(1.02);
+        }
+        
+        /* Logo text styles removed as we're using SVG */
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .cta-button {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.2s;
+            display: inline-block;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 9rem 0 6rem;  /* Reduced top padding to account for larger logo */
+            text-align: center;
+            background: linear-gradient(135deg, #000000 0%, #111827 100%);
+            margin-top: 4.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 70% 30%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            background: linear-gradient(to right, #fff, #E5E7EB);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            position: relative;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 6rem 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-header h2 {
+            font-size: 2.25rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            color: var(--text);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 3px;
+        }
+        
+        .section-header p {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            background: #1F2937;
+            border-color: rgba(99, 102, 241, 0.2);
+        }
+        
+        .feature-icon {
+            width: 3rem;
+            height: 3rem;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            font-size: 1.5rem;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+        
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .feature-card p {
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #111827 0%, #000000 100%);
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 70% 70%, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.25rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .cta-section p {
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            opacity: 0.9;
+        }
+        
+        .cta-button.outline {
+            background-color: transparent;
+            border: 2px solid white;
+            margin-left: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button.outline:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-logo {
+            flex: 1;
+            min-width: 100%;
+            margin-bottom: 2.5rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-logo .logo {
+            margin: 0 auto 2.5rem;
+            display: block;
+            max-width: 100%;
+        }
+        
+        .footer-logo .logo img {
+            height: 200px;  /* 2x larger */
+            width: auto;
+            max-width: 100%;
+            opacity: 0.95;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .footer-logo .logo:hover img {
+            opacity: 1;
+            transform: scale(1.03);
+        }
+        
+        .footer-links {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 4rem;
+            margin: 2rem auto 0;
+            max-width: 1200px;
+            padding: 0 2rem;
+        }
+        
+        .footer-links h3 {
+            font-size: 1rem;
+            margin-bottom: 1.25rem;
+            color: #9CA3AF;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: #D1D5DB;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 2rem;
+            text-align: center;
+            color: #9CA3AF;
+            font-size: 0.875rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <img src="pi-photonics-logo.svg" alt="Pi Photonics">
+                </a>
+                <div class="nav-links">
+                    <a href="#solutions">Solutions</a>
+                    <a href="#technology">Technology</a>
+                    <a href="about.html">About</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <a href="#contact" class="cta-button">Get Started</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Pioneering the Future of Photonic Chip Design</h1>
+            <p>We're building AI-powered tools to transform how photonic integrated circuits are designed, making the process faster, more efficient, and more accessible.</p>
+            <a href="https://www.linkedin.com/in/sunil-pai-96286539/" target="_blank" rel="noopener noreferrer" class="cta-button">Join Our Journey</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="solutions">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Vision for AI in Photonics</h2>
+                <p>We're developing AI-driven solutions that will revolutionize photonic integrated circuit design and optimization.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Rapid Prototyping</h3>
+                    <p>We're working to significantly reduce design cycles through AI-driven automation that learns and improves with each iteration.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Optimized Performance</h3>
+                    <p>Our goal is to develop machine learning algorithms that optimize for performance, power efficiency, and manufacturability in photonic designs.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Intelligent Simulation</h3>
+                    <p>We're exploring AI techniques to enhance photonic simulations, with the goal of predicting outcomes and suggesting optimizations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section class="features" id="technology" style="background-color: #0a0a0a; margin: 0 -2rem; padding: 6rem 2rem; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 30% 50%, rgba(99, 102, 241, 0.05) 0%, transparent 50%); pointer-events: none;"></div>
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Technology Vision</h2>
+                <p>We're researching how to combine deep learning with photonic design automation to shape the future of integrated photonics.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3>Neural Network Approach</h3>
+                    <p>We're investigating neural network architectures that could be trained on photonic design data to suggest optimal layouts.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Generative Design</h3>
+                    <p>We're exploring how generative AI could help discover innovative photonic structures that go beyond conventional design approaches.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>Future Integration</h3>
+                    <p>We aim to ensure our solutions will integrate smoothly with existing EDA tools and foundry PDKs when developed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <h2>Interested in the Future of Photonic Design?</h2>
+            <p>Join us in shaping the next generation of photonic design tools powered by AI.</p>
+            <a href="https://www.linkedin.com/in/sunil-pai-96286539/" target="_blank" rel="noopener noreferrer" class="cta-button">Connect on LinkedIn</a>
+            <a href="#contact" class="cta-button outline">Contact Us</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="#" class="logo">
+                        <img src="pi-photonics-logo.svg" alt="Pi Photonics">
+                    </a>
+                    <p style="max-width: 600px; margin: 1.5rem auto 0; text-align: center;">AI-powered photonic design automation for the next generation of integrated photonics.</p>
+                </div>
+                <div class="footer-links">
+                    <div>
+                        <h3>Product</h3>
+                        <ul>
+                            <li><a href="#solutions">Solutions</a></li>
+                            <li><a href="#technology">Technology</a></li>
+                            <li><a href="#">Pricing</a></li>
+                            <li><a href="#">Documentation</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Company</h3>
+                        <ul>
+                            <li><a href="#about">About Us</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Press</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Resources</h3>
+                        <ul>
+                            <li><a href="#">Case Studies</a></li>
+                            <li><a href="#">Whitepapers</a></li>
+                            <li><a href="#">Webinars</a></li>
+                            <li><a href="#">Support</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Legal</h3>
+                        <ul>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Security</a></li>
+                            <li><a href="#">Compliance</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Pi Photonics, LLC. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

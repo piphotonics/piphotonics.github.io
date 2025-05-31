@@ -1,0 +1,19 @@
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Black background -->
+  <rect width="400" height="300" fill="black"/>
+  
+  <!-- Top shape - shorter horizontal section with sharper curves at ends -->
+  <path d="M 120 80 Q 125 70, 140 70 L 260 70 Q 275 70, 280 60" 
+        stroke="white" stroke-width="20" stroke-linecap="round" fill="none"/>
+  
+  <!-- Bottom shape - S-bend left, shorter straight middle, S-bend right -->
+  <path d="M 140 180 C 140 160, 140 140, 150 120 C 160 100, 170 100, 180 100 
+         L 220 100 
+         C 230 100, 240 100, 250 120 C 260 140, 260 160, 260 180" 
+        stroke="white" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  
+  <!-- "pi photonics" text in white with modern font -->
+  <text x="200" y="250" font-family="Helvetica, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="38" font-weight="300" letter-spacing="2" text-anchor="middle" fill="white">
+    pi photonics
+  </text>
+</svg>

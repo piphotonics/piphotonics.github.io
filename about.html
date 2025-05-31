@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Pi Photonics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --dark: #0a0a0a;
+            --light: #F9FAFB;
+            --gray: #9CA3AF;
+            --dark-bg: #000000;
+            --card-bg: #111827;
+            --text: #E5E7EB;
+            --text-muted: #9CA3AF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--dark-bg);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        /* Header */
+        header {
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        
+        .logo img {
+            height: 60px;
+            width: auto;
+            transition: all 0.2s ease;
+        }
+        
+        .logo:hover img {
+            opacity: 0.95;
+            transform: scale(1.02);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+        }
+        
+        .cta-button {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Profile Picture */
+        .profile-picture {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary);
+            margin: 0 auto 2rem;
+            display: block;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* About Section */
+        .about-section {
+            padding: 12rem 0 6rem;
+        }
+        
+        .about-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .about-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .about-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #fff, #E5E7EB);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .about-header p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .about-content {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .about-content h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .about-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 3px;
+        }
+        
+        .about-content p {
+            margin-bottom: 1.5rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .experience-card {
+            background: rgba(31, 41, 55, 0.5);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .experience-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+            border-color: rgba(99, 102, 241, 0.2);
+        }
+        
+        .experience-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+        
+        .experience-card .company {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        .experience-card .date {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .experience-card p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #000;
+            color: white;
+            padding: 4rem 0 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-logo {
+            flex: 1;
+            min-width: 100%;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-logo .logo img {
+            height: 100px;
+            width: auto;
+            opacity: 0.95;
+            margin: 0 auto 1.5rem;
+            display: block;
+        }
+        
+        .footer-links {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 4rem;
+            margin: 0 auto;
+            max-width: 1000px;
+        }
+        
+        .footer-links h3 {
+            font-size: 1rem;
+            margin-bottom: 1.25rem;
+            color: #9CA3AF;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: #D1D5DB;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 2rem;
+            text-align: center;
+            color: #6B7280;
+            font-size: 0.875rem;
+        }
+        
+        @media (max-width: 768px) {
+            .profile-picture {
+                width: 180px;
+                height: 180px;
+                margin-bottom: 1.5rem;
+            }
+            .about-section {
+                padding: 9rem 0 4rem;
+            }
+            
+            .about-content {
+                padding: 2rem;
+            }
+            
+            .about-header h1 {
+                font-size: 2.5rem;
+                margin-top: 1rem;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 2rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">
+                    <img src="pi-photonics-logo.svg" alt="Pi Photonics">
+                </a>
+                <div class="nav-links">
+                    <a href="index.html#solutions">Solutions</a>
+                    <a href="index.html#technology">Technology</a>
+                    <a href="about.html" class="active">About</a>
+                    <a href="index.html#contact">Contact</a>
+                </div>
+                <a href="https://www.linkedin.com/in/sunil-pai-96286539/" target="_blank" rel="noopener noreferrer" class="cta-button">Connect on LinkedIn</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="container">
+            <div class="about-container">
+                <div class="about-header">
+                    <img src="sunil-pai.png" alt="Dr. Sunil Pai" class="profile-picture">
+                    <h1>Our Vision</h1>
+                    <p>Pioneering the future of photonic design through AI innovation</p>
+                </div>
+                
+                <div class="about-content">
+                    <h2>Our Mission</h2>
+                    <p>At Pi Photonics, we're on a mission to transform the field of photonic integrated circuit design through the power of artificial intelligence. We believe that by combining cutting-edge AI research with deep domain expertise in photonics, we can unlock new possibilities in optical computing and communications.</p>
+                    
+                    <h2>Our Approach</h2>
+                    <p>We're building a team of world-class researchers and engineers who are passionate about pushing the boundaries of what's possible in photonic design. Our approach combines expertise in machine learning, photonics, and semiconductor manufacturing to develop innovative solutions that will shape the future of the industry.</p>
+                    
+                    <h2>Our Founder</h2>
+                    <p>Dr. Sunil Pai, our founder, brings a wealth of experience in quantum computing, photonics, and AI. With a PhD from Stanford University and experience at organizations like PsiQuantum and Google X, Dr. Pai is leading our efforts to build the next generation of photonic design tools.</p>
+                    
+                    <p>At Google X, Dr. Pai worked on large-scale constrained optimizations for photonic inverse design, and at PsiQuantum, he contributed to various aspects of quantum photonic systems. This experience has given him unique insights into the challenges and opportunities in photonic design that we aim to address at Pi Photonics.</p>
+                </div>
+                
+                <div class="about-grid">
+                    <div class="experience-card">
+                        <h3>Our Research Focus</h3>
+                        <p>We're exploring how machine learning can transform photonic design automation, with a focus on developing novel algorithms that can suggest optimal photonic structures and configurations.</p>
+                    </div>
+                    
+                    <div class="experience-card">
+                        <h3>Future Goals</h3>
+                        <p>Our goal is to build AI tools that will make photonic design more accessible, enabling faster development cycles and more efficient photonic integrated circuits for applications in computing and communications.</p>
+                    </div>
+                    
+                    <div class="experience-card">
+                        <h3>Join Our Journey</h3>
+                        <p>We're just getting started and are looking for talented individuals who are excited about the intersection of AI and photonics. <a href="https://www.linkedin.com/in/sunil-pai-96286539/" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: underline;">Connect with me on LinkedIn</a> if you're passionate about shaping the future of this field.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="index.html" class="logo">
+                        <img src="pi-photonics-logo.svg" alt="Pi Photonics">
+                    </a>
+                    <p>AI-powered photonic design automation for the next generation of integrated photonics.</p>
+                </div>
+                <div class="footer-links">
+                    <div>
+                        <h3>Product</h3>
+                        <ul>
+                            <li><a href="index.html#solutions">Solutions</a></li>
+                            <li><a href="index.html#technology">Technology</a></li>
+                            <li><a href="#">Pricing</a></li>
+                            <li><a href="#">Documentation</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Company</h3>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Press</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Resources</h3>
+                        <ul>
+                            <li><a href="#">Case Studies</a></li>
+                            <li><a href="#">Whitepapers</a></li>
+                            <li><a href="#">Webinars</a></li>
+                            <li><a href="#">Support</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Legal</h3>
+                        <ul>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Security</a></li>
+                            <li><a href="#">Compliance</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Pi Photonics, LLC. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
